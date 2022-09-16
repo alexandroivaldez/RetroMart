@@ -1,4 +1,3 @@
-import { render } from "@testing-library/react";
 import "./category-item.styles.scss";
 
 const CategoryItem = ({ category }) => {
