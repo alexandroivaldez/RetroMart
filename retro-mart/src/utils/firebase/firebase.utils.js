@@ -30,35 +30,46 @@ const firebaseConfig = {
 // Initialize Firebase app instance
 const firebaseApp = initializeApp(firebaseConfig);
 
+//Set up a Google provider instance
 const provider = new GoogleAuthProvider();
 
+//Force users to use a Google account because of Google Auth
 provider.setCustomParameters({
     prompt: "select_account"
 });
 
 export const auth = getAuth();
-
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
 export const db = getFirestore();
 
-//Google Document Auth
+//Creates document in "users" collection with provided auth
 export const createUserDocumentFromAuth = async (
     userAuth,
     additionalInformation = {}
 ) => {
 
+    //Check if userAuth is valid
     if(!userAuth) return;
 
+    /*
+    Returns the document reference aka the actual document from the 'users' collection
+    in db that matches the userAuth.id
+    */
     const userDocRef = doc(db, 'users', userAuth.uid);
 
+    //Gets a special object from the document reference
     const userSnapshot = await getDoc(userDocRef);
 
+    //Check to see if the user does no exist in the 'users' collection
+    //If it doesn't create it.
     if(!userSnapshot.exists()) {
         const { displayName, email } = userAuth;
         const createdAt = new Date();
 
+        //Create document inside of "users" collection
         try {
+            //setDoc(document, {data})
             await setDoc(userDocRef, {
                 displayName,
                 email,

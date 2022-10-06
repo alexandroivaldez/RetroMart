@@ -2,9 +2,12 @@ import { signInWithGooglePopup, createUserDocumentFromAuth } from "../../utils/f
 import SignUpForm from "../../components/sign-up-form/sign-up-form.component";
 
 const SignIn = () => {
-    
+
     const logGoogleUser = async () => {
+        //Get user auth from Google
         const {user} = await signInWithGooglePopup();
+
+        //Create document in "users" collection with the provided user auth
         const userDocRef = await createUserDocumentFromAuth(user);
     }
 
