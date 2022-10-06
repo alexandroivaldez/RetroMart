@@ -1,4 +1,6 @@
+//Creates an Firebase app instance
 import { initializeApp } from 'firebase/app';
+
 import {
     getAuth,
     signInWithRedirect,
@@ -10,7 +12,12 @@ import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 
 
 
-// Your web app's Firebase configuration
+/*
+    Your web app's Firebase configuration
+    Your API keys do not need to be hidden.
+    Firebase actually needs these public.
+*/
+
 const firebaseConfig = {
     apiKey: "AIzaSyB2GqFk9r4I9AkEOUf7TwxcxaKeksASmpE",
     authDomain: "retro-mart-db.firebaseapp.com",
@@ -20,7 +27,7 @@ const firebaseConfig = {
     appId: "1:445409548413:web:c6f5bcd37755213c303914"
 };
   
-// Initialize Firebase
+// Initialize Firebase app instance
 const firebaseApp = initializeApp(firebaseConfig);
 
 const provider = new GoogleAuthProvider();
