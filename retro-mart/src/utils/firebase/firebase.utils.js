@@ -90,5 +90,6 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
     //If email or password dne return nothing.
     if(!email || !password) return;
 
+    //Create user with email, password, and auth and return confirmation
     return await createUserWithEmailAndPassword(auth, email, password)
 }

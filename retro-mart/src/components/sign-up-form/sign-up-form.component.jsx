@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils';
 
+//Default values for the form
 const defaultFormFields = {
     displayName: '',
     email: '',
@@ -11,11 +12,11 @@ const defaultFormFields = {
 
 const SignUpForm = () => {
 
-    //State and destructuring of state
+    //State hook and destructuring of state.
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { displayName, email, password, confirmPassword } = formFields;
 
-
+    //Resets the form fields back to nothing.
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
     };
@@ -50,6 +51,7 @@ const SignUpForm = () => {
     //Updates the formFields state when the user types any change
     const handleChange = (event) => {
         const { name, value } = event.target;
+        //Update the specific value
         setFormFields({...formFields, [name]: value});
     };
 
